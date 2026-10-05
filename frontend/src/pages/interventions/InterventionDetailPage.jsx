@@ -15,7 +15,6 @@ import './InterventionDetailPage.css'
 
 const prenom = (nom) => nom.split(' ')[0]
 
-// Lien wa.me avec un message prérempli pour le technicien
 function lienWhatsApp(intervention) {
   const numero = (intervention.technicien.whatsapp ?? intervention.technicien.telephone ?? '').replace(/\D/g, '')
   if (!numero) return null

@@ -48,7 +48,6 @@
   flex-wrap: wrap;
 }
 
-/* Carte tableau, comme les listes d'interventions et de factures */
 .clients__card {
   padding: 0;
   overflow: hidden;

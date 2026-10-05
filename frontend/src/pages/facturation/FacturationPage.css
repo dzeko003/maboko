@@ -4,7 +4,6 @@
   gap: var(--space-5);
 }
 
-/* En-tête fixé sous la barre du haut, comme sur la page Interventions */
 .factures__entete {
   position: sticky;
   top: var(--header-height);
@@ -53,7 +52,6 @@
   gap: var(--space-2);
 }
 
-/* Totaux : facturé, encaissé, reste dû */
 .factures__totaux {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -86,7 +84,6 @@
   font-weight: 700;
 }
 
-/* Carte tableau, comme la liste des interventions */
 .factures__card {
   padding: 0;
   overflow: hidden;
@@ -172,7 +169,6 @@
   font-size: 11px;
 }
 
-/* Pastille devant le libellé du statut, comme dans les autres listes */
 .factures__statut .badge::before {
   content: '';
   width: 6px;
@@ -204,7 +200,6 @@
   position: relative;
 }
 
-/* Nombre de reçus de la facture, sur l'icône portefeuille */
 .factures__nb-recus {
   position: absolute;
   top: 1px;
@@ -236,7 +231,6 @@
   background: var(--bg);
 }
 
-/* Paiements d'une facture et formulaire d'encaissement */
 .paiements {
   display: flex;
   flex-direction: column;
@@ -306,7 +300,7 @@
 }
 
 @media (max-width: 600px) {
-  /* Sur petit écran, l'en-tête complet prendrait trop de hauteur : il défile avec la page */
+  /* Petit écran : l'en-tête défile avec la page */
   .factures__entete {
     position: static;
     margin-top: 0;

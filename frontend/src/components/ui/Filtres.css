@@ -1,4 +1,4 @@
-/* Filtres partagés des listes (interventions, factures) : puces de statut, date, recherche */
+/* Filtres des listes : statut, date, recherche */
 .filtre {
   display: inline-flex;
   align-items: center;
@@ -42,7 +42,6 @@
   background: var(--card);
 }
 
-/* Filtre par date prévue */
 .filtre-date {
   display: flex;
   align-items: center;

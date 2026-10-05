@@ -21,7 +21,7 @@ const VIDE = {
   description: '',
 }
 
-// Valeur attendue par <input type="datetime-local"> : AAAA-MM-JJTHH:MM en heure locale
+// Format attendu par datetime-local : AAAA-MM-JJTHH:MM, heure locale
 function versDateLocale(iso) {
   if (!iso) return ''
   const d = new Date(iso)
@@ -49,7 +49,7 @@ function versPayload(form) {
     objet: form.objet,
     priorite: form.priorite,
     statut: form.statut,
-    // datetime-local est en heure locale : on l'envoie en ISO pour ne pas dépendre du fuseau du serveur
+    // Envoyée en ISO pour ne pas dépendre du fuseau du serveur
     datePrevue: form.datePrevue ? new Date(form.datePrevue).toISOString() : undefined,
     dureeMinutes: form.dureeMinutes || undefined,
     technicienId: form.technicienId || undefined,
@@ -58,7 +58,6 @@ function versPayload(form) {
   }
 }
 
-// interventionId absent : création ; présent : modification de cette intervention
 export function FormulaireIntervention({ interventionId, onEnregistree, onAnnuler }) {
   if (!interventionId) return <Formulaire initial={VIDE} onEnregistree={onEnregistree} onAnnuler={onAnnuler} />
   return <Edition key={interventionId} id={interventionId} onEnregistree={onEnregistree} onAnnuler={onAnnuler} />
@@ -99,7 +98,6 @@ function Formulaire({ intervention, initial, onEnregistree, onAnnuler }) {
   const [envoi, setEnvoi] = useState(false)
 
   const edition = Boolean(intervention)
-  // Clients de l'onglet Clients, regroupés par statut
   const externes = (clients.data ?? []).filter((c) => !c.compteClientId)
   const carnet = (clients.data ?? []).filter((c) => c.compteClientId)
   const clientChoisi = (clients.data ?? []).find((c) => c.id === form.client)
@@ -190,7 +188,7 @@ function Formulaire({ intervention, initial, onEnregistree, onAnnuler }) {
           label="Technicien"
           value={form.technicienId}
           onChange={changer('technicienId')}
-          // Un technicien ne peut pas réattribuer une intervention (refusé aussi côté serveur)
+          // Refusé aussi côté serveur
           disabled={user?.role === 'TECHNICIEN'}
         >
           <option value="">Non attribuée</option>

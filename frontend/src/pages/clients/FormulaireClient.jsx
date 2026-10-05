@@ -6,7 +6,6 @@ import { Input } from '../../components/ui/Input.jsx'
 import '../../components/ui/Filtres.css'
 import { useFetch } from '../../hooks/useFetch.js'
 
-// Recherche d'un compte inscrit sur Carnet, pas encore client de l'activité, pour l'ajouter
 function AjoutDepuisCarnet({ onEnregistre, onAnnuler }) {
   const [saisie, setSaisie] = useState('')
   const [q, setQ] = useState('')
@@ -74,7 +73,6 @@ function AjoutDepuisCarnet({ onEnregistre, onAnnuler }) {
   )
 }
 
-// Ajout d'un client : saisie d'un client externe, ou rattachement d'un client déjà inscrit sur Carnet
 export function AjoutClient({ onEnregistre, onAnnuler }) {
   const [mode, setMode] = useState('externe')
   return (
@@ -96,7 +94,7 @@ export function AjoutClient({ onEnregistre, onAnnuler }) {
   )
 }
 
-// client absent : création d'un client externe ; présent : modification de sa fiche.
+// client absent : création ; présent : modification
 // integre : formulaire affiché dans une carte existante (sans sa propre carte)
 export function FormulaireClient({ client, integre = false, onEnregistre, onAnnuler }) {
   const [form, setForm] = useState({

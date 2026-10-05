@@ -1,0 +1,63 @@
+/* Petit écran : chaque ligne devient une carte, libellés tirés de data-label */
+@media (max-width: 640px) {
+  .table-cartes {
+    min-width: 0 !important;
+  }
+
+  .table-cartes thead {
+    display: none;
+  }
+
+  .table-cartes tbody {
+    display: block;
+  }
+
+  /* Colonne flex pour remonter le titre en premier */
+  .table-cartes tbody tr {
+    display: flex;
+    flex-direction: column;
+    padding: var(--space-3) var(--space-4);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .table-cartes tbody tr:last-child {
+    border-bottom: 0;
+  }
+
+  .table-cartes tbody td {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+    padding: 3px 0 !important;
+    border: 0 !important;
+    text-align: right !important;
+    white-space: normal !important;
+  }
+
+  .table-cartes tbody td[data-label]::before {
+    content: attr(data-label);
+    flex-shrink: 0;
+    font-size: 13px;
+    color: var(--muted);
+    text-align: left;
+  }
+
+  .table-cartes tbody td.table-cartes__titre {
+    display: block;
+    order: -1;
+    margin-bottom: var(--space-1);
+    text-align: left !important;
+    font-size: 15px;
+  }
+
+  .table-cartes tbody td.table-cartes__actions {
+    justify-content: flex-end;
+    margin-top: var(--space-1);
+  }
+
+  .table-cartes tbody td[colspan] {
+    display: block;
+    text-align: left !important;
+  }
+}

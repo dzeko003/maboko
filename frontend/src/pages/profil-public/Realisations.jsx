@@ -19,7 +19,6 @@ function ZoneTexte({ label, value, onChange }) {
   )
 }
 
-// Ajout (photo obligatoire) ou modification du titre et de la description d'une réalisation
 function FormulaireRealisation({ realisation, onEnregistre, onAnnuler }) {
   const entree = useRef(null)
   const [fichier, setFichier] = useState(null)
@@ -28,7 +27,7 @@ function FormulaireRealisation({ realisation, onEnregistre, onAnnuler }) {
   const [envoi, setEnvoi] = useState(false)
   const [erreur, setErreur] = useState(null)
 
-  // Aperçu local de la photo choisie, libéré quand elle change ou que le formulaire se ferme
+  // Aperçu local, libéré quand la photo change
   const apercu = useMemo(() => (fichier ? URL.createObjectURL(fichier) : null), [fichier])
   useEffect(() => () => apercu && URL.revokeObjectURL(apercu), [apercu])
 
