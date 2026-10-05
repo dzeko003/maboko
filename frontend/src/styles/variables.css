@@ -1,0 +1,38 @@
+:root {
+  --font: 'Manrope Variable', system-ui, sans-serif;
+
+  --accent: #db0000;
+  --accent-hover: #b80000;
+  --accent-soft: #fdecec;
+
+  --bg: #f6f6f6;
+  --card: #ffffff;
+  --line: #ececec;
+  --line-strong: #dcdcdc;
+  --ink: #141414;
+  --muted: #6b6b6b;
+
+  --ok: #1f8a4c;
+  --ok-soft: #e6f4ec;
+  --warn: #b26a00;
+  --warn-soft: #fdf1df;
+  --err: #c62828;
+  --err-soft: #fdeaea;
+  --info: #2457c5;
+  --info-soft: #e8eefb;
+
+  --radius-sm: 8px;
+  --radius: 12px;
+  --radius-lg: 20px;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+
+  --header-height: 64px;
+  --sidebar-width: 240px;
+}

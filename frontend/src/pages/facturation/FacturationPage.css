@@ -1,0 +1,341 @@
+.factures {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+/* En-tête fixé sous la barre du haut, comme sur la page Interventions */
+.factures__entete {
+  position: sticky;
+  top: var(--header-height);
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  margin-top: calc(-1 * var(--space-5));
+  padding: var(--space-5) 0 var(--space-3);
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+}
+
+.factures__titre {
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.factures__barre {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.factures__filtres {
+  display: flex;
+  gap: var(--space-2);
+  min-width: 0;
+  overflow-x: auto;
+  padding-bottom: 2px;
+}
+
+.factures__outils {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.factures__etat {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-2);
+}
+
+/* Totaux : facturé, encaissé, reste dû */
+.factures__totaux {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.total {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-4) var(--space-5);
+}
+
+.total + .total {
+  border-left: 1px solid var(--line);
+}
+
+.total__libelle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.total__valeur {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+/* Carte tableau, comme la liste des interventions */
+.factures__card {
+  padding: 0;
+  overflow: hidden;
+}
+
+.factures__card .card__header {
+  margin: 0;
+  padding: var(--space-4) var(--space-5);
+  border-bottom: 1px solid var(--line);
+}
+
+.factures__card .factures__etat {
+  padding: var(--space-6) var(--space-5);
+}
+
+.factures__scroll {
+  overflow-x: auto;
+}
+
+.factures__table {
+  width: 100%;
+  min-width: 900px;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.factures__table th {
+  padding: var(--space-3) var(--space-5);
+  border-bottom: 1px solid var(--line);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--muted);
+  text-align: left;
+  white-space: nowrap;
+}
+
+.factures__table td {
+  padding: var(--space-3) var(--space-5);
+  border-bottom: 1px solid var(--line);
+  vertical-align: middle;
+}
+
+.factures__table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.factures__table tbody tr:not(.factures__detail):hover {
+  background: var(--bg);
+}
+
+.factures__nombre {
+  text-align: right !important;
+  white-space: nowrap;
+}
+
+.factures__date {
+  white-space: nowrap;
+}
+
+.factures__ref {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 12px;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  white-space: nowrap;
+}
+
+.factures__ref:hover {
+  color: var(--accent);
+}
+
+.factures__intervention {
+  font-weight: 500;
+}
+
+.factures__intervention:hover {
+  color: var(--accent);
+}
+
+.factures__sous {
+  display: block;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 11px;
+}
+
+/* Pastille devant le libellé du statut, comme dans les autres listes */
+.factures__statut .badge::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  margin-right: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.factures__actions {
+  white-space: nowrap;
+  text-align: right;
+}
+
+.factures__action {
+  display: inline-grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: none;
+  color: var(--muted);
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+.factures__action {
+  position: relative;
+}
+
+/* Nombre de reçus de la facture, sur l'icône portefeuille */
+.factures__nb-recus {
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  min-width: 15px;
+  height: 15px;
+  padding: 0 4px;
+  border-radius: 999px;
+  background: var(--ok);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 15px;
+}
+
+.factures__action:hover,
+.factures__action:focus-visible,
+.factures__action--actif {
+  background: var(--line);
+  color: var(--ink);
+  outline: none;
+}
+
+.factures__ligne--ouverte td {
+  border-bottom-color: transparent;
+}
+
+.factures__detail td {
+  background: var(--bg);
+}
+
+/* Paiements d'une facture et formulaire d'encaissement */
+.paiements {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.paiements__liste {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.paiements__liste li {
+  display: grid;
+  grid-template-columns: 110px 120px minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.paiements__numero {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 12px;
+}
+
+.paiements__succes-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.paiements__succes {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-sm);
+  background: var(--ok-soft);
+  color: var(--ok);
+  font-size: 14px;
+}
+
+.paiements__form {
+  display: grid;
+  grid-template-columns: 140px 160px 160px minmax(0, 1fr) auto;
+  align-items: end;
+  gap: var(--space-3);
+}
+
+.paiements__erreur {
+  grid-column: 1 / -1;
+}
+
+@media (max-width: 900px) {
+  .factures__entete {
+    margin-top: calc(-1 * var(--space-4));
+    padding-top: var(--space-4);
+  }
+
+  .paiements__form {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  /* Sur petit écran, l'en-tête complet prendrait trop de hauteur : il défile avec la page */
+  .factures__entete {
+    position: static;
+    margin-top: 0;
+    padding: 0;
+    border-bottom: 0;
+  }
+
+  .factures__titre {
+    font-size: 24px;
+  }
+
+  .factures__outils {
+    width: 100%;
+  }
+
+  .factures__totaux {
+    grid-template-columns: 1fr;
+  }
+
+  .total + .total {
+    border-left: 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .paiements__form {
+    grid-template-columns: 1fr;
+  }
+
+  .paiements__liste li {
+    grid-template-columns: 1fr auto;
+  }
+}

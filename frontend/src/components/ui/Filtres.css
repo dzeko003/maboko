@@ -1,0 +1,123 @@
+/* Filtres partagés des listes (interventions, factures) : puces de statut, date, recherche */
+.filtre {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  height: 36px;
+  padding: 0 var(--space-3) 0 var(--space-4);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--card);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--muted);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s, background-color 0.15s;
+}
+
+.filtre:hover {
+  border-color: var(--line-strong);
+  color: var(--ink);
+}
+
+.filtre--actif,
+.filtre--actif:hover {
+  background: var(--accent-soft);
+  border-color: var(--accent-soft);
+  color: var(--accent);
+}
+
+.filtre__compte {
+  min-width: 22px;
+  padding: 1px 7px;
+  border-radius: 999px;
+  background: var(--bg);
+  font-size: 12px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.filtre--actif .filtre__compte {
+  background: var(--card);
+}
+
+/* Filtre par date prévue */
+.filtre-date {
+  display: flex;
+  align-items: center;
+  height: 38px;
+  padding: 0 var(--space-3);
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  color: var(--muted);
+}
+
+.filtre-date:focus-within {
+  border-color: var(--ink);
+}
+
+.filtre-date input {
+  border: 0;
+  outline: none;
+  background: transparent;
+  font-size: 14px;
+  color: var(--ink);
+}
+
+.filtre-date__libelle {
+  padding: 0 var(--space-1);
+  font-size: 13px;
+}
+
+.filtre-date__effacer {
+  margin-left: var(--space-1);
+  padding: 0 2px;
+  border: 0;
+  background: none;
+  font-size: 18px;
+  line-height: 1;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.filtre-date__effacer:hover {
+  color: var(--ink);
+}
+
+.recherche {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  width: min(320px, 100%);
+  height: 38px;
+  padding: 0 var(--space-3);
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  color: var(--muted);
+}
+
+.recherche:focus-within {
+  border-color: var(--ink);
+}
+
+.recherche input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  outline: none;
+  background: transparent;
+  font-size: 14px;
+  color: var(--ink);
+}
+
+@media (max-width: 600px) {
+  .filtre-date,
+  .recherche {
+    width: 100%;
+  }
+
+  .filtre-date input {
+    flex: 1;
+  }
+}

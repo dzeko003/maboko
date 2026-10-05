@@ -1,0 +1,139 @@
+.public-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+}
+
+.public-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: var(--card);
+  border-bottom: 1px solid var(--line);
+}
+
+.public-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  height: var(--header-height);
+}
+
+.public-header__logo {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.public-header__nav {
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+  white-space: nowrap;
+}
+
+.public-header__link {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.public-header__link:hover {
+  color: var(--accent);
+}
+
+.public-header__nav .public-header__secondaire {
+  height: 38px;
+  padding: 0 var(--space-4);
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  background: none;
+  color: var(--ink);
+}
+
+.public-header__nav .public-header__secondaire:hover {
+  background: var(--bg);
+}
+
+.public-header__nav .public-header__principal {
+  height: 38px;
+  padding: 0 var(--space-4);
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+}
+
+.public-header__nav .public-header__principal:hover {
+  background: var(--accent-hover);
+}
+
+.public-header__nav .public-header__mobile {
+  display: none;
+}
+
+.public-main {
+  flex: 1;
+}
+
+.public-footer {
+  border-top: 1px solid var(--line);
+  background: var(--card);
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.public-footer__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+  padding-block: var(--space-5);
+}
+
+.public-footer__liens {
+  display: flex;
+  gap: var(--space-5);
+  flex-wrap: wrap;
+}
+
+.public-footer__liens a:hover {
+  color: var(--ink);
+}
+
+/* Les ancres de la landing ne tiennent que sur grand écran */
+@media (max-width: 1100px) {
+  .public-header__ancre {
+    display: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .public-header__nav .public-header__secondaire {
+    display: none;
+  }
+}
+
+@media (max-width: 760px) {
+  .public-header__link {
+    display: none;
+  }
+
+  /* L'accès à l'annuaire reste visible sur mobile */
+  .public-header__link--essentiel {
+    display: inline;
+  }
+
+  /* Sur mobile, « Connexion » remplace « Créer un compte » */
+  .public-header__nav .public-header__bureau {
+    display: none;
+  }
+
+  .public-header__nav .public-header__mobile {
+    display: inline-flex;
+  }
+
+  .public-header__nav {
+    gap: var(--space-3);
+  }
+}

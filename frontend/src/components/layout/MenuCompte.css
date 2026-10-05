@@ -1,0 +1,137 @@
+.menu-compte {
+  position: relative;
+}
+
+.menu-compte__bouton {
+  display: block;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: none;
+  cursor: pointer;
+}
+
+.menu-compte__bouton:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Avatar à initiale avec pastille « connecté » */
+.avatar {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.avatar--grand {
+  width: 56px;
+  height: 56px;
+  font-size: 22px;
+}
+
+.avatar__statut {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 11px;
+  height: 11px;
+  border: 2px solid var(--card);
+  border-radius: 50%;
+  background: #22c55e;
+}
+
+.avatar--grand .avatar__statut {
+  width: 14px;
+  height: 14px;
+}
+
+/* Panneau déroulant */
+.menu-compte__panneau {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  z-index: 20;
+  width: 280px;
+  max-width: calc(100vw - 2 * var(--space-4));
+  padding: var(--space-2);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: 0 12px 32px rgb(0 0 0 / 0.1);
+  animation: menu-compte-ouverture 0.15s ease-out;
+}
+
+.menu-compte__identite {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-4) var(--space-3) var(--space-3);
+  text-align: center;
+}
+
+.menu-compte__identite .avatar {
+  margin-bottom: var(--space-2);
+}
+
+.menu-compte__nom {
+  max-width: 100%;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.menu-compte__email {
+  max-width: 100%;
+  font-size: 13px;
+  color: var(--muted);
+  overflow-wrap: anywhere;
+}
+
+.menu-compte__liens {
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-compte__lien {
+  display: block;
+  width: 100%;
+  padding: 10px var(--space-3);
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: none;
+  font-size: 15px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.menu-compte__lien:hover,
+.menu-compte__lien:focus-visible {
+  background: var(--bg);
+  outline: none;
+}
+
+.menu-compte__separateur {
+  margin: var(--space-2) var(--space-3);
+  border: 0;
+  border-top: 1px solid var(--line);
+}
+
+@keyframes menu-compte-ouverture {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .menu-compte__panneau {
+    animation: none;
+  }
+}

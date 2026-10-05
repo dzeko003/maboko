@@ -1,0 +1,271 @@
+.clients,
+.clients__liste {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.clients__entete {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.clients__titre {
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.clients__entete .muted a {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.clients__retour {
+  display: inline-block;
+  margin-bottom: var(--space-3);
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.clients__retour:hover {
+  color: var(--ink);
+}
+
+.clients__badges {
+  display: flex;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+}
+
+.clients__barre {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+/* Carte tableau, comme les listes d'interventions et de factures */
+.clients__card {
+  padding: 0;
+  overflow: hidden;
+}
+
+.clients__card .card__header {
+  margin: 0;
+  padding: var(--space-4) var(--space-5);
+  border-bottom: 1px solid var(--line);
+}
+
+.clients__etat {
+  padding: var(--space-6) var(--space-5);
+}
+
+.clients__scroll {
+  overflow-x: auto;
+}
+
+.clients__table {
+  width: 100%;
+  min-width: 720px;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.clients__table th {
+  padding: var(--space-3) var(--space-5);
+  border-bottom: 1px solid var(--line);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--muted);
+  text-align: left;
+  white-space: nowrap;
+}
+
+.clients__table td {
+  padding: var(--space-3) var(--space-5);
+  border-bottom: 1px solid var(--line);
+  vertical-align: middle;
+}
+
+.clients__table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.clients__table tbody tr:hover {
+  background: var(--bg);
+}
+
+.clients__nom {
+  font-weight: 500;
+}
+
+.clients__nom:hover {
+  color: var(--accent);
+}
+
+.clients__note {
+  font-size: 13px;
+}
+
+.clients__sous {
+  display: block;
+  font-size: 12px;
+}
+
+.clients__tel,
+.clients__date {
+  white-space: nowrap;
+}
+
+.clients__ref {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 12px;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  white-space: nowrap;
+}
+
+.clients__actions {
+  white-space: nowrap;
+  text-align: right;
+}
+
+.clients__action {
+  display: inline-grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: none;
+  color: var(--muted);
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+.clients__action:hover,
+.clients__action:focus-visible {
+  background: var(--line);
+  color: var(--ink);
+  outline: none;
+}
+
+.clients__erreur {
+  display: block;
+  font-size: 12px;
+  color: var(--err);
+}
+
+/* Fiche client */
+.clients__infos {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-4);
+  margin: 0;
+  padding: var(--space-4) var(--space-5);
+  font-size: 14px;
+}
+
+.clients__infos dt {
+  margin-bottom: 2px;
+  font-size: 12px;
+}
+
+.clients__infos dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.clients__infos-plein {
+  grid-column: 1 / -1;
+}
+
+/* Ajout d'un client : externe ou inscrit sur Carnet */
+.ajout-client__modes {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-4);
+}
+
+.ajout-carnet {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.ajout-carnet__liste {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+}
+
+.ajout-carnet__liste li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  font-size: 14px;
+}
+
+.ajout-carnet__liste li + li {
+  border-top: 1px solid var(--line);
+}
+
+.ajout-carnet__liste li > span {
+  display: flex;
+  flex-direction: column;
+}
+
+.ajout-carnet__liste .muted {
+  font-size: 12px;
+}
+
+/* Formulaire client */
+.formulaire-client__grille {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-4);
+}
+
+.formulaire-client__large {
+  grid-column: 1 / -1;
+}
+
+.formulaire-client__plein,
+.formulaire-client__actions {
+  grid-column: 1 / -1;
+}
+
+.formulaire-client__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+@media (max-width: 900px) {
+  .clients__infos,
+  .formulaire-client__grille {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .clients__titre {
+    font-size: 24px;
+  }
+
+  .clients__infos,
+  .formulaire-client__grille {
+    grid-template-columns: 1fr;
+  }
+}

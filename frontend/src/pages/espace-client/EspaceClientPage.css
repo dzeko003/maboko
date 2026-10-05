@@ -1,0 +1,252 @@
+.espace-client {
+  padding-top: var(--space-6);
+  padding-bottom: var(--space-7);
+}
+
+.espace-client__accueil {
+  max-width: 680px;
+  margin: var(--space-7) auto;
+  padding: var(--space-6);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--card);
+}
+
+.espace-client__surtitre {
+  margin: 0 0 var(--space-2);
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.espace-client__introduction {
+  max-width: 680px;
+  margin: var(--space-2) 0 var(--space-4);
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.espace-client__bouton {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 42px;
+  padding: var(--space-2) var(--space-4);
+  border: 1px solid var(--accent);
+  border-radius: var(--radius-sm);
+  background: var(--accent);
+  color: var(--card);
+  font: inherit;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.espace-client__bouton:hover {
+  border-color: var(--accent-hover);
+  background: var(--accent-hover);
+}
+
+.espace-client__bouton:disabled {
+  opacity: 0.65;
+  cursor: wait;
+}
+
+.espace-client__inscription {
+  margin: var(--space-4) 0 0;
+  color: var(--muted);
+}
+
+.espace-client__inscription a,
+.espace-client__technicien a {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.espace-client__coordonnees {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-5);
+  color: var(--muted);
+}
+
+.espace-client__interventions {
+  margin-top: var(--space-6);
+}
+
+.espace-client__titre-section {
+  margin: 0 0 var(--space-4);
+  color: var(--ink);
+  font-size: 22px;
+}
+
+.espace-client__liste {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.espace-client__carte {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.espace-client__carte-entete {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--space-3);
+}
+
+.espace-client__carte-entete h3 {
+  margin: 0;
+  color: var(--ink);
+  font-size: 17px;
+}
+
+.espace-client__reference,
+.espace-client__activite,
+.espace-client__date,
+.espace-client__technicien,
+.espace-client__description {
+  margin: 0;
+}
+
+.espace-client__reference {
+  margin-bottom: var(--space-1);
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.espace-client__activite {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.espace-client__date,
+.espace-client__technicien {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.espace-client__description {
+  line-height: 1.55;
+}
+
+.espace-client__statut {
+  flex: 0 0 auto;
+  padding: var(--space-1) var(--space-2);
+  border-radius: 999px;
+  background: var(--info-soft);
+  color: var(--info);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.espace-client__statut--terminee {
+  background: var(--ok-soft);
+  color: var(--ok);
+}
+
+.espace-client__statut--annulee {
+  background: var(--err-soft);
+  color: var(--err);
+}
+
+.espace-client__statut--en_cours {
+  background: var(--warn-soft);
+  color: var(--warn);
+}
+
+.espace-client__avis-existant {
+  margin-top: var(--space-2);
+  padding: var(--space-3);
+  border-radius: var(--radius-sm);
+  background: var(--ok-soft);
+  color: var(--ok);
+}
+
+.espace-client__avis-existant p {
+  margin: var(--space-1) 0 0;
+  color: var(--ink);
+  line-height: 1.5;
+}
+
+.espace-client__formulaire-avis {
+  display: grid;
+  gap: var(--space-3);
+  margin-top: var(--space-3);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--line);
+}
+
+.espace-client__formulaire-avis h3 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.espace-client__champ {
+  display: grid;
+  gap: var(--space-1);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.espace-client__champ select,
+.espace-client__champ textarea {
+  width: 100%;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-sm);
+  background: var(--card);
+  color: var(--ink);
+  font: inherit;
+  font-weight: 400;
+}
+
+.espace-client__champ textarea {
+  resize: vertical;
+}
+
+.espace-client__etat {
+  padding: var(--space-5);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--card);
+  color: var(--muted);
+}
+
+.espace-client__etat--erreur,
+.espace-client__erreur {
+  color: var(--err);
+}
+
+.espace-client__erreur {
+  margin: 0;
+}
+
+.espace-client__etat--erreur .espace-client__bouton {
+  margin-top: var(--space-2);
+}
+
+.espace-client__bouton--lien {
+  margin-top: var(--space-2);
+}
+
+@media (max-width: 560px) {
+  .espace-client {
+    padding-top: var(--space-4);
+  }
+
+  .espace-client__accueil {
+    margin: var(--space-4) auto;
+    padding: var(--space-4);
+  }
+
+  .espace-client__carte-entete {
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,211 @@
+.profil-technicien {
+  padding-top: var(--space-5);
+  padding-bottom: var(--space-7);
+}
+
+.profil-technicien__retour {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.profil-technicien__retour:hover {
+  color: var(--accent);
+}
+
+.profil-technicien__grille {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(240px, 0.8fr);
+  gap: var(--space-4);
+  align-items: start;
+}
+
+.profil-technicien__identite {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.profil-technicien__photo,
+.profil-technicien__avatar {
+  flex: 0 0 88px;
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+}
+
+.profil-technicien__photo {
+  object-fit: cover;
+}
+
+.profil-technicien__avatar {
+  display: grid;
+  place-items: center;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 34px;
+  font-weight: 700;
+}
+
+.profil-technicien__surtitre {
+  margin: 0 0 var(--space-1);
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.profil-technicien__metier {
+  margin: var(--space-1) 0 0;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.profil-technicien__coordonnees {
+  margin-top: var(--space-4);
+  color: var(--muted);
+}
+
+.profil-technicien__coordonnees p {
+  margin: var(--space-1) 0 0;
+}
+
+.profil-technicien__note {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  margin: var(--space-4) 0 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.profil-technicien__note span:first-child,
+.profil-technicien__avis-note {
+  color: var(--warn);
+  letter-spacing: 0.04em;
+}
+
+.profil-technicien__bio {
+  margin: var(--space-4) 0 0;
+  line-height: 1.65;
+  white-space: pre-line;
+}
+
+.profil-technicien__actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.profil-technicien__bouton {
+  display: block;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--accent);
+  border-radius: var(--radius-sm);
+  background: var(--accent);
+  color: var(--card);
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+}
+
+.profil-technicien__bouton:hover {
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+}
+
+.profil-technicien__bouton--secondaire {
+  background: var(--card);
+  color: var(--ink);
+  border-color: var(--line-strong);
+}
+
+.profil-technicien__bouton--secondaire:hover {
+  background: var(--accent-soft);
+  border-color: var(--accent-soft);
+}
+
+.profil-technicien__avis {
+  margin-top: var(--space-4);
+}
+
+.profil-technicien__liste-avis {
+  display: grid;
+}
+
+.profil-technicien__avis-item {
+  padding: var(--space-3) 0;
+  border-top: 1px solid var(--line);
+}
+
+.profil-technicien__avis-item:first-child {
+  padding-top: 0;
+  border-top: 0;
+}
+
+.profil-technicien__avis-entete {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.profil-technicien__avis-entete time,
+.profil-technicien__vide,
+.profil-technicien__etat {
+  color: var(--muted);
+}
+
+.profil-technicien__avis-item p {
+  margin: var(--space-2) 0 0;
+  line-height: 1.55;
+}
+
+@media (max-width: 760px) {
+  .profil-technicien__grille {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 460px) {
+  .profil-technicien__identite {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+/* Réalisations du technicien */
+.profil-technicien__realisations {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: var(--space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.profil-technicien__realisations li {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  font-size: 14px;
+}
+
+.profil-technicien__realisations img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  margin-bottom: var(--space-1);
+  border-radius: var(--radius-sm);
+  object-fit: cover;
+  background: var(--bg);
+}
+
+.profil-technicien__realisations p {
+  color: var(--muted);
+  font-size: 13px;
+}

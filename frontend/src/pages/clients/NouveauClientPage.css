@@ -1,0 +1,64 @@
+.nouveau-client__retour {
+    align-self: flex-start;
+}
+
+.nouveau-client__retour:hover {
+    color: var(--accent);
+}
+
+.nouveau-client__modes {
+    display: flex;
+    gap: var(--space-2);
+}
+
+.nouveau-client__corps {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    padding: var(--space-4);
+}
+
+.nouveau-client__form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    max-width: 480px;
+}
+
+.nouveau-client__recherche {
+    display: flex;
+    gap: var(--space-2);
+    max-width: 480px;
+}
+
+.nouveau-client__recherche input {
+    flex: 1;
+}
+
+.nouveau-client__champ {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    font-weight: 500;
+}
+
+.nouveau-client__champ input,
+.nouveau-client__champ textarea,
+.nouveau-client__recherche input {
+    padding: var(--space-2) var(--space-3);
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius-sm);
+    background: var(--card);
+    font-weight: 400;
+}
+
+.nouveau-client__champ input:focus,
+.nouveau-client__champ textarea:focus,
+.nouveau-client__recherche input:focus {
+    outline: 2px solid var(--accent);
+    outline-offset: -1px;
+}
+
+.nouveau-client__erreur {
+    color: var(--err);
+}

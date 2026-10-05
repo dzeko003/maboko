@@ -1,0 +1,29 @@
+/* Formulaire de création et de modification d'une intervention */
+.nouvelle-intervention__grille {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-4);
+}
+
+.nouvelle-intervention__plein,
+.nouvelle-intervention__actions {
+  grid-column: 1 / -1;
+}
+
+.nouvelle-intervention__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+@media (max-width: 900px) {
+  .nouvelle-intervention__grille {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .nouvelle-intervention__grille {
+    grid-template-columns: 1fr;
+  }
+}

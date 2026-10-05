@@ -1,0 +1,68 @@
+.client-detail__retour {
+    align-self: flex-start;
+}
+
+.client-detail__retour:hover {
+    color: var(--accent);
+}
+
+.client-detail__entete {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+}
+
+.client-detail__champs {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: var(--space-4);
+    padding: var(--space-4);
+}
+
+.client-detail__champ dt {
+    font-size: 13px;
+    margin-bottom: var(--space-1);
+}
+
+.client-detail__champ dd {
+    margin: 0;
+    font-weight: 500;
+    white-space: pre-line;
+}
+.client-detail__table-wrap {
+    overflow-x: auto;
+}
+
+.client-detail__table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.client-detail__table th {
+    padding: var(--space-3) var(--space-4);
+    font-weight: 500;
+    color: var(--muted);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    white-space: nowrap;
+}
+
+.client-detail__table td {
+    padding: var(--space-3) var(--space-4);
+    border-bottom: 1px solid var(--line);
+    vertical-align: middle;
+}
+
+.client-detail__table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.client-detail__ref {
+    font-family: monospace;
+    text-decoration: underline;
+}
+
+.client-detail__vide {
+    padding: var(--space-5) var(--space-4);
+}

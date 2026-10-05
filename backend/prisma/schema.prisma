@@ -1,0 +1,371 @@
+generator client {
+  provider            = "prisma-client"
+  output              = "../src/generated/prisma"
+  importFileExtension = "ts"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Role {
+  RESPONSABLE
+  TECHNICIEN
+}
+
+enum StatutIntervention {
+  A_PLANIFIER
+  PLANIFIEE
+  EN_COURS
+  TERMINEE
+  ANNULEE
+}
+
+enum Priorite {
+  BASSE
+  NORMALE
+  HAUTE
+  URGENTE
+}
+
+enum EtatDevis {
+  BROUILLON
+  ENVOYE
+  ACCEPTE
+  REFUSE
+}
+
+enum TypeLigne {
+  MAIN_OEUVRE
+  MATERIEL
+}
+
+enum CategoriePiece {
+  AVANT
+  APRES
+  DOCUMENT
+}
+
+enum ModePaiement {
+  ESPECES
+  MOBILE_MONEY
+  VIREMENT
+  CHEQUE
+  CARTE
+  AUTRE
+}
+
+enum TypeReference {
+  INTERVENTION
+  DEVIS
+  FACTURE
+  RECU
+}
+
+model Activite {
+  id               String   @id @default(uuid())
+  nom              String
+  telephone        String?
+  adresse          String?
+  devise           String
+  infosFacturation String?
+  logoChemin       String?
+  logoMime         String?
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  utilisateurs  Utilisateur[]
+  clients       Client[]
+  interventions Intervention[]
+  devis         Devis[]
+  factures      Facture[]
+  paiements     Paiement[]
+  piecesJointes PieceJointe[]
+  compteurs     Compteur[]
+}
+
+model Utilisateur {
+  id             String   @id @default(uuid())
+  activiteId     String
+  nom            String
+  email          String   @unique
+  motDePasseHash String
+  role           Role     @default(RESPONSABLE)
+  actif          Boolean  @default(true)
+  createdAt      DateTime @default(now())
+
+  // Activation du compte par e-mail : null tant que le lien n'a pas été ouvert
+  emailVerifieLe        DateTime?
+  jetonActivationHash   String?   @unique
+  jetonActivationExpire DateTime?
+
+  profilPublic Boolean @default(false)
+  slug         String? @unique
+  metier       String?
+  bio          String?
+  telephone    String?
+  whatsapp     String?
+  ville        String?
+  quartier     String?
+  photoChemin  String?
+  photoMime    String?
+
+  activite      Activite           @relation(fields: [activiteId], references: [id], onDelete: Cascade)
+  interventions Intervention[]     @relation("TechnicienIntervention")
+  historiques   HistoriqueStatut[]
+  avis          Avis[]
+  realisations  Realisation[]
+
+  @@index([profilPublic, ville])
+  @@index([activiteId])
+}
+
+// Réalisation présentée sur le profil public d'un technicien (photo dans le bucket public)
+model Realisation {
+  id            String   @id @default(uuid())
+  utilisateurId String
+  titre         String
+  description   String?
+  photoChemin   String
+  photoMime     String
+  createdAt     DateTime @default(now())
+
+  utilisateur Utilisateur @relation(fields: [utilisateurId], references: [id], onDelete: Cascade)
+
+  @@index([utilisateurId])
+}
+
+model Compteur {
+  activiteId String
+  type       TypeReference
+  annee      Int
+  valeur     Int           @default(0)
+
+  activite Activite @relation(fields: [activiteId], references: [id], onDelete: Cascade)
+
+  @@id([activiteId, type, annee])
+}
+
+model Client {
+  id             String   @id @default(uuid())
+  activiteId     String
+  nom            String
+  telephone      String?
+  adresse        String?
+  notes          String?
+  archive        Boolean  @default(false)
+  compteClientId String?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  activite      Activite       @relation(fields: [activiteId], references: [id], onDelete: Cascade)
+  compteClient  CompteClient?  @relation(fields: [compteClientId], references: [id], onDelete: SetNull)
+  interventions Intervention[]
+
+  @@index([activiteId, archive])
+}
+
+model Intervention {
+  id           String             @id @default(uuid())
+  activiteId   String
+  reference    String
+  clientId     String
+  technicienId String?
+  objet        String
+  description  String?
+  adresse      String?
+  priorite     Priorite           @default(NORMALE)
+  statut       StatutIntervention @default(A_PLANIFIER)
+  datePrevue   DateTime?
+  dureeMinutes Int?
+  avisToken    String?            @unique
+  createdAt    DateTime           @default(now())
+  updatedAt    DateTime           @updatedAt
+
+  activite      Activite           @relation(fields: [activiteId], references: [id], onDelete: Cascade)
+  client        Client             @relation(fields: [clientId], references: [id], onDelete: Restrict)
+  technicien    Utilisateur?       @relation("TechnicienIntervention", fields: [technicienId], references: [id], onDelete: SetNull)
+  rapport       Rapport?
+  piecesJointes PieceJointe[]
+  devis         Devis[]
+  factures      Facture[]
+  historiques   HistoriqueStatut[]
+  avis          Avis?
+
+  @@unique([activiteId, reference])
+  @@index([activiteId, statut])
+  @@index([activiteId, datePrevue])
+  @@index([clientId])
+}
+
+model HistoriqueStatut {
+  id             String              @id @default(uuid())
+  interventionId String
+  ancienStatut   StatutIntervention?
+  nouveauStatut  StatutIntervention
+  utilisateurId  String?
+  createdAt      DateTime            @default(now())
+
+  intervention Intervention @relation(fields: [interventionId], references: [id], onDelete: Cascade)
+  utilisateur  Utilisateur? @relation(fields: [utilisateurId], references: [id], onDelete: SetNull)
+
+  @@index([interventionId])
+}
+
+model Rapport {
+  id                 String    @id @default(uuid())
+  interventionId     String    @unique
+  constats           String?
+  causePresumee      String?
+  travauxRecommandes String?
+  avancement         String?
+  travauxRealises    String?
+  materiauxUtilises  String?
+  observations       String?
+  valideParNom       String?
+  valideLe           DateTime?
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
+
+  intervention Intervention @relation(fields: [interventionId], references: [id], onDelete: Cascade)
+}
+
+model PieceJointe {
+  id             String         @id @default(uuid())
+  activiteId     String
+  interventionId String
+  categorie      CategoriePiece
+  chemin         String
+  nomOriginal    String
+  typeMime       String
+  taille         Int
+  publiee        Boolean        @default(false)
+  createdAt      DateTime       @default(now())
+
+  activite     Activite     @relation(fields: [activiteId], references: [id], onDelete: Cascade)
+  intervention Intervention @relation(fields: [interventionId], references: [id], onDelete: Cascade)
+
+  @@index([interventionId])
+}
+
+model Devis {
+  id             String    @id @default(uuid())
+  activiteId     String
+  reference      String
+  interventionId String
+  etat           EtatDevis @default(BROUILLON)
+  version        Int       @default(1)
+  notes          String?
+  envoyeLe       DateTime?
+  reponduLe      DateTime?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  activite     Activite     @relation(fields: [activiteId], references: [id], onDelete: Cascade)
+  intervention Intervention @relation(fields: [interventionId], references: [id], onDelete: Cascade)
+  lignes       LigneDevis[]
+  factures     Facture[]
+
+  @@unique([activiteId, reference])
+  @@index([interventionId])
+}
+
+model LigneDevis {
+  id           String    @id @default(uuid())
+  devisId      String
+  type         TypeLigne
+  designation  String
+  quantite     Decimal   @db.Decimal(10, 2)
+  prixUnitaire Decimal   @db.Decimal(12, 2)
+  ordre        Int       @default(0)
+
+  devis Devis @relation(fields: [devisId], references: [id], onDelete: Cascade)
+
+  @@index([devisId])
+}
+
+model Facture {
+  id             String    @id @default(uuid())
+  activiteId     String
+  reference      String
+  interventionId String
+  devisId        String?
+  dateEmission   DateTime  @default(now())
+  dateEcheance   DateTime?
+  createdAt      DateTime  @default(now())
+
+  activite     Activite       @relation(fields: [activiteId], references: [id], onDelete: Cascade)
+  intervention Intervention   @relation(fields: [interventionId], references: [id], onDelete: Restrict)
+  devis        Devis?         @relation(fields: [devisId], references: [id], onDelete: SetNull)
+  lignes       LigneFacture[]
+  paiements    Paiement[]
+
+  @@unique([activiteId, reference])
+  @@index([interventionId])
+}
+
+model LigneFacture {
+  id           String    @id @default(uuid())
+  factureId    String
+  type         TypeLigne
+  designation  String
+  quantite     Decimal   @db.Decimal(10, 2)
+  prixUnitaire Decimal   @db.Decimal(12, 2)
+  ordre        Int       @default(0)
+
+  facture Facture @relation(fields: [factureId], references: [id], onDelete: Cascade)
+
+  @@index([factureId])
+}
+
+model Paiement {
+  id         String       @id @default(uuid())
+  activiteId String
+  factureId  String
+  montant    Decimal      @db.Decimal(12, 2)
+  date       DateTime
+  mode       ModePaiement
+  reference  String?
+  // Numéro du reçu remis au client : REC-2026-0001, attribué à l'enregistrement du paiement
+  numeroRecu String
+  createdAt  DateTime     @default(now())
+
+  activite Activite @relation(fields: [activiteId], references: [id], onDelete: Cascade)
+  facture  Facture  @relation(fields: [factureId], references: [id], onDelete: Restrict)
+
+  @@unique([activiteId, numeroRecu])
+  @@index([factureId])
+}
+
+model CompteClient {
+  id             String   @id @default(uuid())
+  nom            String
+  email          String   @unique
+  telephone      String?
+  ville          String?
+  motDePasseHash String
+  createdAt      DateTime @default(now())
+
+  emailVerifieLe        DateTime?
+  jetonActivationHash   String?   @unique
+  jetonActivationExpire DateTime?
+
+  clients Client[]
+  avis    Avis[]
+}
+
+model Avis {
+  id             String   @id @default(uuid())
+  technicienId   String
+  interventionId String   @unique
+  compteClientId String
+  note           Int
+  commentaire    String?
+  createdAt      DateTime @default(now())
+
+  technicien   Utilisateur  @relation(fields: [technicienId], references: [id], onDelete: Cascade)
+  intervention Intervention @relation(fields: [interventionId], references: [id], onDelete: Cascade)
+  compteClient CompteClient @relation(fields: [compteClientId], references: [id], onDelete: Cascade)
+
+  @@index([technicienId])
+}

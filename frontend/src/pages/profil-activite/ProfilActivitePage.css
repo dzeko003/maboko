@@ -1,0 +1,240 @@
+.activite {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.activite__titre {
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.activite__corps {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 360px;
+  gap: var(--space-5);
+  align-items: start;
+}
+
+.activite__cote,
+.activite__technicien {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.activite__technicien {
+  max-width: 480px;
+}
+
+/* Cartes : en-tête séparé par un trait */
+.activite__carte {
+  padding: 0;
+  overflow: hidden;
+}
+
+.activite__carte .card__header {
+  margin: 0;
+  padding: var(--space-4) var(--space-5);
+  border-bottom: 1px solid var(--line);
+}
+
+.activite__carte > :not(.card__header):not(.equipe) {
+  margin: var(--space-5);
+}
+
+.activite__form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.activite__grille {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-4);
+}
+
+.activite__zone {
+  height: auto;
+  min-height: 80px;
+  padding: var(--space-2) var(--space-3);
+  resize: vertical;
+  font: inherit;
+}
+
+/* Logo */
+.logo-activite {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.logo-activite__cadre {
+  display: grid;
+  place-items: center;
+  height: 96px;
+  padding: var(--space-2);
+  border: 1px dashed var(--line-strong);
+  border-radius: var(--radius-sm);
+  background: var(--bg);
+  font-size: 13px;
+}
+
+.logo-activite__cadre img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.logo-activite__aide {
+  font-size: 12px;
+}
+
+.logo-activite__actions {
+  display: flex;
+  gap: var(--space-2);
+}
+
+/* Équipe */
+.equipe {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.equipe__membre {
+  padding: var(--space-3) var(--space-5);
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+}
+
+.equipe__membre:first-child {
+  border-top: 0;
+}
+
+.equipe__membre--inactif .equipe__nom,
+.equipe__membre--inactif .equipe__details {
+  opacity: 0.55;
+}
+
+.equipe__nom {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-weight: 600;
+}
+
+.equipe__etat {
+  padding: 1px 8px;
+  border-radius: 999px;
+  background: var(--line);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.equipe__etat--attente {
+  background: var(--warn-soft);
+  color: var(--warn);
+}
+
+.equipe__details {
+  overflow: hidden;
+  font-size: 13px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.equipe__liens {
+  display: flex;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+  margin-top: var(--space-1);
+}
+
+.equipe__liens button {
+  padding: 0;
+  border: 0;
+  background: none;
+  font-size: 13px;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.equipe__liens button:hover:not(:disabled) {
+  color: var(--ink);
+  text-decoration: underline;
+}
+
+.equipe__liens .equipe__danger {
+  color: var(--err);
+}
+
+.equipe__ajout,
+.equipe__modif {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.equipe__ajout {
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid var(--line);
+}
+
+.equipe__aide {
+  font-size: 13px;
+}
+
+.equipe__actions-form {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.equipe__ok {
+  font-size: 13px;
+  color: var(--ok);
+}
+
+.equipe__confirmation {
+  margin-bottom: 0 !important;
+}
+
+/* Mon compte */
+.compte {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  font-size: 14px;
+}
+
+.compte__nom {
+  font-weight: 600;
+}
+
+.compte > div {
+  margin-top: var(--space-3);
+}
+
+.compte__form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+@media (max-width: 1100px) {
+  .activite__corps {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 700px) {
+  .activite__titre {
+    font-size: 24px;
+  }
+
+  .activite__grille {
+    grid-template-columns: 1fr;
+  }
+}
