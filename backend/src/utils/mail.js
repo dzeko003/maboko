@@ -16,6 +16,10 @@ const transport = mailActif
       port: env.SMTP_PORT,
       secure: env.SMTP_PORT === 465,
       auth: env.SMTP_USER ? { user: env.SMTP_USER, pass: env.SMTP_PASS } : undefined,
+      // Échouer vite plutôt que bloquer la requête ~2 min si le serveur SMTP est injoignable
+      connectionTimeout: 10_000,
+      greetingTimeout: 10_000,
+      socketTimeout: 20_000,
     })
   : null;
 
@@ -25,7 +29,8 @@ export async function envoyerMail({ to, subject, text, html }) {
     console.log(`\n✉️  Mail pour ${to} — ${subject}\n${text}\n`);
     return;
   }
-  await transport.sendMail({ from: env.MAIL_FROM, to, subject, text, html, attachments: html ? [LOGO] : [] });
+  const info = await transport.sendMail({ from: env.MAIL_FROM, to, subject, text, html, attachments: html ? [LOGO] : [] });
+  console.log(`Mail envoyé à ${to} — ${subject} (${info.response})`);
 }
 
 const echapper = (s) => s.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
