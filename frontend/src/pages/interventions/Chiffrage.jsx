@@ -17,7 +17,6 @@ const ETATS_DEVIS = {
 
 const messageErreur = (err) => err.data?.details?.[0]?.message ?? err.message
 
-// Le PDF est produit par l'API ; il s'ouvre dans un nouvel onglet (aperçu, impression, téléchargement)
 export function LienPdf({ href, children = 'PDF' }) {
   return (
     <a href={`/api${href}`} target="_blank" rel="noreferrer" className="btn btn--secondary btn--sm">
@@ -30,7 +29,6 @@ export function LienPdf({ href, children = 'PDF' }) {
   )
 }
 
-// Formulaire commun : lignes, champs complémentaires, bouton d'envoi
 function FormulaireLignes({ titre, libelle, avecNotes, onEnvoyer, onAnnuler }) {
   const [lignes, setLignes] = useState(() => [nouvelleLigne()])
   const [notes, setNotes] = useState('')

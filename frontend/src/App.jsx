@@ -24,7 +24,6 @@ import ArchivesPage from './pages/clients/ArchivesPage.jsx'
 export default function App() {
   return (
     <Routes>
-      {/* La landing a son propre en-tête, posé sur son haut de page rouge */}
       <Route path="/" element={<LandingPage />} />
       <Route element={<PublicLayout />}>
         <Route path="/techniciens" element={<AnnuairePage />} />

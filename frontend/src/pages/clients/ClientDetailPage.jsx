@@ -9,6 +9,7 @@ import { getStatut } from '../../utils/interventions.js'
 import { BadgeClient } from './BadgeClient.jsx'
 import { FormulaireClient } from './FormulaireClient.jsx'
 import './ClientsListe.css'
+import '../../components/ui/TableCartes.css'
 
 export default function ClientDetailPage() {
   const { id } = useParams()
@@ -98,7 +99,7 @@ export default function ClientDetailPage() {
           <p className="clients__etat muted">Aucune intervention pour ce client.</p>
         ) : (
           <div className="clients__scroll">
-            <table className="clients__table">
+            <table className="clients__table table-cartes">
               <thead>
                 <tr>
                   <th>Date prévue</th>
@@ -113,17 +114,17 @@ export default function ClientDetailPage() {
                   const statut = getStatut(i.statut)
                   return (
                     <tr key={i.id}>
-                      <td className="clients__date">{i.datePrevue ? formatJourHeure(i.datePrevue) : <span className="muted">Non planifiée</span>}</td>
-                      <td>
+                      <td data-label="Date prévue" className="clients__date">{i.datePrevue ? formatJourHeure(i.datePrevue) : <span className="muted">Non planifiée</span>}</td>
+                      <td className="table-cartes__titre">
                         <Link to={`/dashboard/interventions/${i.id}`} className="clients__nom">
                           {i.objet}
                         </Link>
                       </td>
-                      <td>
+                      <td data-label="Statut">
                         <Badge tone={statut.tone}>{statut.label}</Badge>
                       </td>
-                      <td className={i.technicien ? '' : 'muted'}>{i.technicien?.nom ?? 'Non attribuée'}</td>
-                      <td>
+                      <td data-label="Technicien" className={i.technicien ? '' : 'muted'}>{i.technicien?.nom ?? 'Non attribuée'}</td>
+                      <td data-label="Réf.">
                         <Link to={`/dashboard/interventions/${i.id}`} className="clients__ref">
                           {i.reference}
                         </Link>

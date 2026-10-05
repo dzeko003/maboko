@@ -8,6 +8,7 @@ import { useFetch } from '../../hooks/useFetch.js'
 import { formatMontant } from '../../utils/format.js'
 import { getStatut } from '../../utils/interventions.js'
 import './DashboardPage.css'
+import '../../components/ui/TableCartes.css'
 
 const aujourdHui = new Intl.DateTimeFormat('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' })
 const heure = new Intl.DateTimeFormat('fr-FR', { hour: '2-digit', minute: '2-digit' })
@@ -94,7 +95,7 @@ function ProchainsRendezVous({ prochains }) {
       }
     >
       <div className="accueil__scroll">
-        <table className="accueil__table">
+        <table className="accueil__table table-cartes">
           <thead>
             <tr>
               <th>Heure</th>
@@ -117,24 +118,24 @@ function ProchainsRendezVous({ prochains }) {
                 const statut = getStatut(i.statut)
                 return (
                   <tr key={i.id}>
-                    <td className="accueil__heure">
+                    <td data-label="Heure" className="accueil__heure">
                       <strong>{heure.format(new Date(i.datePrevue))}</strong>
                       {!estAujourdHui(i.datePrevue) && <span className="muted">{jourCourt.format(new Date(i.datePrevue))}</span>}
                     </td>
-                    <td>
+                    <td className="table-cartes__titre">
                       <Link to={`/dashboard/interventions/${i.id}`} className="accueil__objet">
                         {i.objet}
                       </Link>
                       {i.adresse && <span className="accueil__sous muted">{i.adresse}</span>}
                     </td>
-                    <td>
+                    <td data-label="Statut">
                       <span className="accueil__statut">
                         <Badge tone={statut.tone}>{statut.label}</Badge>
                       </span>
                     </td>
-                    <td>{i.client.nom}</td>
-                    <td className={i.technicien ? '' : 'muted'}>{i.technicien?.nom ?? 'Non attribuée'}</td>
-                    <td>
+                    <td data-label="Client">{i.client.nom}</td>
+                    <td data-label="Technicien" className={i.technicien ? '' : 'muted'}>{i.technicien?.nom ?? 'Non attribuée'}</td>
+                    <td data-label="Réf.">
                       <Link to={`/dashboard/interventions/${i.id}`} className="accueil__ref">
                         {i.reference}
                       </Link>

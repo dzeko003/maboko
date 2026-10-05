@@ -17,8 +17,6 @@ import { PublicHeader } from '../../components/layout/PublicHeader.jsx'
 import { useFetch } from '../../hooks/useFetch.js'
 import './LandingPage.css'
 
-// Landing page des visiteurs : haut rouge centré avec éventail de photos, sections numérotées,
-// étapes illustrées, bande de métiers, techniciens de l'annuaire, encart pour les professionnels.
 // Photos des métiers : Pexels (licence libre, usage commercial autorisé).
 
 const ICONES = {
@@ -110,7 +108,6 @@ function Etoiles({ note }) {
   )
 }
 
-// Barre de recherche métier + ville, qui mène à l'annuaire filtré
 function Recherche({ empile = false }) {
   const navigate = useNavigate()
   const [ville, setVille] = useState('')
@@ -208,10 +205,9 @@ function Atout({ icone, titre, texte }) {
 export default function LandingPage() {
   const { data } = useFetch('/annuaire')
   const techniciens = data ?? []
-  // Les mieux notés d'abord, puis ceux qui ont le plus d'avis
   const classement = [...techniciens].sort((a, b) => (b.noteMoyenne ?? 0) - (a.noteMoyenne ?? 0) || b.nbAvis - a.nbAvis)
   const meilleur = classement.find((t) => t.nbAvis > 0)
-  // Un vrai avis (le plus récent du technicien le mieux noté), jamais un témoignage inventé
+  // Un vrai avis, jamais un témoignage inventé
   const citation = meilleur?.avis?.find((a) => a.commentaire)
 
   return (
@@ -238,7 +234,6 @@ export default function LandingPage() {
           </div>
         </div>
 
-        {/* Éventail de photos, recouvert en bas par la section suivante */}
         <div className="landing-hero__photos">
           <img src={photo2} alt="" className="landing-hero__photo landing-hero__photo--gauche" />
           <img src={photo3} alt="" className="landing-hero__photo landing-hero__photo--droite" />
@@ -327,7 +322,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* 04 Techniciens (vraies données de l'annuaire) */}
+      {/* 04 Techniciens */}
       {classement.length > 0 && (
         <section className="landing-section">
           <Titre num="04" label="Près de chez vous" titre="Rencontrez nos techniciens" sousTitre="Des professionnels qualifiés, prêts à intervenir." />

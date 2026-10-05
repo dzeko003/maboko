@@ -80,7 +80,6 @@ function InformationsActivite({ activite, onChange }) {
   )
 }
 
-// Logo affiché en en-tête des devis, factures, reçus et rapports PDF
 function Logo({ activite, onChange }) {
   const entree = useRef(null)
   const [envoi, setEnvoi] = useState(false)

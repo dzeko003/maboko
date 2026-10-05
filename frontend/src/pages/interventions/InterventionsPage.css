@@ -4,7 +4,7 @@
   gap: var(--space-5);
 }
 
-/* En-tête fixé sous la barre du haut du dashboard */
+/* En-tête fixé sous la barre du haut */
 .interventions__entete {
   position: sticky;
   top: var(--header-height);
@@ -43,7 +43,6 @@
   font-weight: 600;
 }
 
-/* Filtres par statut */
 .interventions__filtres {
   display: flex;
   gap: var(--space-2);
@@ -51,7 +50,6 @@
   padding-bottom: 2px;
 }
 
-/* Carte tableau */
 .interventions__card {
   padding: 0;
   overflow: hidden;
@@ -132,7 +130,6 @@
   font-size: 12px;
 }
 
-/* Pastille devant le libellé du statut, comme sur le tableau de bord */
 .interventions__statut .badge::before {
   content: '';
   width: 6px;
@@ -154,7 +151,6 @@
   color: var(--accent);
 }
 
-/* Actions de ligne : modifier, supprimer */
 .interventions__actions {
   white-space: nowrap;
   text-align: right;
@@ -199,7 +195,6 @@
   text-align: right;
 }
 
-/* Pagination sous le tableau */
 .pagination {
   display: flex;
   align-items: center;
@@ -223,7 +218,6 @@
 }
 
 @media (max-width: 900px) {
-  /* Le contenu du dashboard a un padding réduit à cette largeur */
   .interventions__entete {
     margin-top: calc(-1 * var(--space-4));
     padding-top: var(--space-4);
@@ -231,7 +225,7 @@
 }
 
 @media (max-width: 600px) {
-  /* Sur petit écran, l'en-tête complet prendrait trop de hauteur : il défile avec la page */
+  /* Petit écran : l'en-tête défile avec la page */
   .interventions__entete {
     position: static;
     margin-top: 0;

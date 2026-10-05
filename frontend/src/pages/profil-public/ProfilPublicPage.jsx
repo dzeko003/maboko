@@ -8,7 +8,7 @@ import { Select } from '../../components/ui/Select.jsx'
 import { Realisations } from './Realisations.jsx'
 import './ProfilPublicPage.css'
 
-// Principales villes du Congo-Brazzaville, pour que l'annuaire puisse filtrer de façon fiable
+// Liste fermée pour que l'annuaire filtre de façon fiable
 const VILLES = [
   'Brazzaville',
   'Pointe-Noire',
@@ -147,7 +147,7 @@ function MonLien({ profil }) {
       setCopie(true)
       setTimeout(() => setCopie(false), 2000)
     } catch {
-      // Copie impossible (navigateur sans accès au presse-papiers) : le lien reste sélectionnable
+      // Presse-papiers indisponible : le lien reste sélectionnable
     }
   }
 

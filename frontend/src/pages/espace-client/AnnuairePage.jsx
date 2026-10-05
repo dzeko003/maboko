@@ -78,7 +78,7 @@ export default function AnnuairePage() {
     }
   }, [tentative])
 
-  // La ville choisie sur la landing reste affichée même si aucun technicien n'y est encore inscrit
+  // Garde la ville demandée même sans technicien inscrit
   const villes = useMemo(
     () => [...new Set([...techniciens.map((technicien) => technicien.ville), ville].filter(Boolean))]
       .sort((a, b) => a.localeCompare(b, 'fr')),

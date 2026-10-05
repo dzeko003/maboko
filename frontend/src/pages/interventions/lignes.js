@@ -11,5 +11,4 @@ export const nouvelleLigne = (type = 'MAIN_OEUVRE') => ({
 
 export const montantLigne = (l) => (Number(l.quantite) || 0) * (Number(l.prixUnitaire) || 0)
 
-// Lignes pour l'API, sans la clé locale
 export const lignesPourApi = (lignes) => lignes.map(({ cle, ...l }) => l) // eslint-disable-line no-unused-vars

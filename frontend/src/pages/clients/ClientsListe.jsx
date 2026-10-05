@@ -7,6 +7,7 @@ import '../../components/ui/Filtres.css'
 import { useAuth } from '../../context/AuthContext.jsx'
 import { useFetch } from '../../hooks/useFetch.js'
 import './ClientsListe.css'
+import '../../components/ui/TableCartes.css'
 
 function Icone({ children }) {
   return (
@@ -59,14 +60,13 @@ function ActionArchive({ client, onChange }) {
   )
 }
 
-// Liste des clients, externes et inscrits sur Carnet (actifs ou archivés) : recherche, actions par ligne
 export function ClientsListe({ archive = false, version = 0, onModifier }) {
   const { user } = useAuth()
   const [searchParams, setSearchParams] = useSearchParams()
   const q = searchParams.get('q') ?? ''
   const [saisie, setSaisie] = useState(q)
 
-  // La recherche part au serveur 300 ms après la dernière frappe ; elle est gardée dans l'URL
+  // Recherche gardée dans l'URL
   useEffect(() => {
     const terme = saisie.trim()
     if (terme === q) return
@@ -90,7 +90,6 @@ export function ClientsListe({ archive = false, version = 0, onModifier }) {
   if (q) params.set('q', q)
   const { data, loading, error, reload } = useFetch(`/clients?${params}`)
 
-  // Rechargement demandé par la page (client ajouté ou modifié)
   useEffect(() => {
     if (version > 0) reload()
   }, [version, reload])
@@ -130,7 +129,7 @@ export function ClientsListe({ archive = false, version = 0, onModifier }) {
           </p>
         ) : (
           <div className="clients__scroll">
-            <table className="clients__table">
+            <table className="clients__table table-cartes">
               <thead>
                 <tr>
                   <th>Client</th>
@@ -143,27 +142,27 @@ export function ClientsListe({ archive = false, version = 0, onModifier }) {
               <tbody>
                 {clients.map((client) => (
                   <tr key={client.id}>
-                    <td>
+                    <td className="table-cartes__titre">
                       <Link to={`/dashboard/clients/${client.id}`} className="clients__nom">
                         {client.nom}
                       </Link>
                       <span className="clients__sous muted">{client.adresse || 'Adresse non renseignée'}</span>
                     </td>
-                    <td className={client.telephone ? 'clients__tel' : 'muted'}>{client.telephone || '—'}</td>
-                    <td>
+                    <td data-label="Téléphone" className={client.telephone ? 'clients__tel' : 'muted'}>{client.telephone || '—'}</td>
+                    <td data-label="Statut">
                       <BadgeClient client={client} />
                     </td>
-                    <td>
+                    <td data-label="Interventions">
                       {client._count.interventions} intervention{client._count.interventions > 1 ? 's' : ''}
                     </td>
-                    <td className="clients__actions">
+                    <td className="clients__actions table-cartes__actions">
                       <Link to={`/dashboard/clients/${client.id}`} className="clients__action" aria-label={`Voir ${client.nom}`} title="Voir">
                         <Icone>
                           <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z" />
                           <circle cx="12" cy="12" r="3" />
                         </Icone>
                       </Link>
-                      {/* Un client enregistré sur Carnet est en consultation seule : ni modification, ni archivage */}
+                      {/* Client Carnet : consultation seule */}
                       {onModifier && !client.compteClientId && (
                         <button type="button" className="clients__action" onClick={() => onModifier(client)} aria-label={`Modifier ${client.nom}`} title="Modifier">
                           <Icone>

@@ -7,8 +7,7 @@ import { Input } from '../../components/ui/Input.jsx'
 import { useAuth } from '../../context/AuthContext.jsx'
 import './Auth.css'
 
-// Lien reçu par e-mail par un technicien invité (ou pour un nouveau mot de passe) :
-// il choisit son mot de passe, son compte est activé et il arrive sur son tableau de bord
+// Invitation ou nouveau mot de passe : choix du mot de passe, puis activation
 export default function InvitationPage() {
   const { refresh } = useAuth()
   const navigate = useNavigate()

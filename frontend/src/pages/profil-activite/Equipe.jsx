@@ -7,7 +7,6 @@ import { useFetch } from '../../hooks/useFetch.js'
 
 const messageErreur = (err) => err.data?.details?.[0]?.message ?? err.message
 
-// Création d'un technicien : il reçoit un e-mail pour activer son compte et choisir son mot de passe
 function AjoutTechnicien({ onAjoute, onAnnuler }) {
   const [form, setForm] = useState({ nom: '', email: '', telephone: '' })
   const [envoi, setEnvoi] = useState(false)

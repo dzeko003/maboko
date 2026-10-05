@@ -1,4 +1,3 @@
-/* Formulaire de création et de modification d'une intervention */
 .nouvelle-intervention__grille {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
