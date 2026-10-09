@@ -33,23 +33,23 @@ Mot de passe : `demo12345`
 
 ## Modules
 
-| Module | Route | Responsable |
-|---|---|---|
-| auth | /api/auth | Ketsia GOMA |
-| annuaire | /api/annuaire | Steven BOTOKO |
-| espace-client | /api/espace-client | Steven BOTOKO |
-| dashboard | /api/dashboard | Précieux MAVOUNGOU BAYONNE |
-| interventions | /api/interventions | Tony Bérenger KEDO |
-| clients | /api/clients | Steven KILONDA |
-| facturation | /api/facturation | Berenis MASSAMBA |
-| profil-public | /api/profil-public | Steven BOTOKO |
-| activite | /api/activite | Précieux MAVOUNGOU BAYONNE |
+| Module | Route |
+|---|---|
+| auth | /api/auth |
+| annuaire | /api/annuaire |
+| espace-client | /api/espace-client |
+| dashboard | /api/dashboard |
+| interventions | /api/interventions |
+| clients | /api/clients |
+| facturation | /api/facturation |
+| profil-public | /api/profil-public |
+| activite | /api/activite |
 
 Seuls `auth` et `annuaire` sont accessibles sans connexion.
 
 ## Fichiers
 
-Les fichiers sont stockés sur Cloudflare R2. Demander les variables `R2_*` et les ajouter dans `.env`.
+Les fichiers sont stockés sur Cloudflare R2. Renseigner les variables `R2_*` dans `.env`.
 
 - `carnet-prives` : photos d'intervention, documents, logo
 - `carnet-publics` : photos de profil, réalisations
@@ -62,5 +62,5 @@ En base on enregistre le chemin du fichier, pas l'URL.
 - Valider les entrées avec zod.
 - Lever les erreurs avec `HttpError`.
 - Toujours filtrer les données sur l'activité de l'utilisateur connecté.
-- Une migration par PR : `npm run db:migrate -- --name nom_migration`.
+- Une migration par fonctionnalité : `npm run db:migrate -- --name nom_migration`.
 - Ne jamais commiter `.env`.
